@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма регистрации</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .registration-form {
+            background: rgb(240, 240, 240);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        .registration-form h2 {
+            text-align: center;
+        }
+        .registration-form input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .registration-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #26b8a4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px; /* Add some space between the buttons */
+        }
+        .registration-form button:hover {
+            background-color: #218838;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.8em;
+            margin-top: -5px;
+            margin-bottom: 10px;
+        }
+
+        .login-link-button {
+            width: 80%; /* Reduced width */
+            max-width: 320px; /* Ensure it doesn't exceed the form's width */
+            padding: 10px;
+            background-color: #777; /* A gray color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center; /* Center the text */
+            text-decoration: none; /* Remove underline from the link */
+            display: block; /* Make it a block-level element to take full width */
+            margin-top: 10px;
+            margin-left: auto;  /* Center horizontally */
+            margin-right: auto; /* Center horizontally */
+        }
+
+        .login-link-button:hover {
+            background-color: #555; /* Darker gray on hover */
+        }
+    </style>
+</head>
+<body background="phon.jpg">
+
+    <div class="registration-form">
+        <h2>Регистрация</h2>
+        <form action="#" method="post" onsubmit="return validateForm()">
+            <input type="text" id="username" name="username" placeholder="Имя пользователя" required oninput="validateUsername()">
+            <div id="username-error" class="error-message"></div>
+
+            <input type="password" id="password" name="password" placeholder="Пароль" required oninput="validatePassword()">
+            <div id="password-error" class="error-message"></div>
+
+            <button type="submit">Зарегистрироваться</button>
+            <a href="/login" class="login-link-button">Если у вас уже есть аккаунт, войдите</a>
+        </form>
+    </div>
+
+    <script>
+        function validateUsername() {
+            const usernameInput = document.getElementById('username');
+            const usernameError = document.getElementById('username-error');
+            const usernameValue = usernameInput.value;
+
+            if (/\d/.test(usernameValue)) {
+                usernameError.textContent = "Имя пользователя не должно содержать цифры.";
+                return false;
+            } else {
+                usernameError.textContent = "";
+                return true;
+            }
+        }
+
+       function validatePassword() {
+            const passwordInput = document.getElementById('password');
+            const passwordError = document.getElementById('password-error');
+            const passwordValue = passwordInput.value;
+
+            if (/[^0-9]/.test(passwordValue)) {
+                passwordError.textContent = "Пароль должен содержать только цифры.";
+                return false;
+            } else {
+                passwordError.textContent = "";
+                return true;
+            }
+        }
+
+        function validateForm() {
+            let isValidUsername = validateUsername();
+            let isValidPassword = validatePassword();
+
+            return isValidUsername && isValidPassword;
+        }
+    </script>
+
+</body>
+</html>

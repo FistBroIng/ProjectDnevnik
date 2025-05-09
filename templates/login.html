@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в систему</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('phon.jpg'); /* Added background image */
+            background-size: cover;          /* Cover the entire background */
+            background-position: center;      /* Center the background image */
+        }
+        .login-form {
+            background: rgba(240, 240, 240, 0.8); /* Added transparency */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        .login-form h2 {
+            text-align: center;
+        }
+        .login-form input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #26b8a4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px; /* Add some space between the buttons */
+        }
+        .login-form button:hover {
+            background-color: #218838;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.8em;
+            margin-top: -5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-form">
+        <h2>Вход в систему</h2>
+        <form action="#" method="post" onsubmit="return validateForm()">
+            <input type="text" id="username" name="username" placeholder="Имя пользователя" required oninput="validateUsername()">
+            <div id="username-error" class="error-message"></div>
+
+            <input type="password" id="password" name="password" placeholder="Пароль" required oninput="validatePassword()">
+            <div id="password-error" class="error-message"></div>
+
+            <button type="submit">Войти</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            let usernameValid = validateUsername();
+            let passwordValid = validatePassword();
+
+            return usernameValid && passwordValid;
+        }
+
+        function validateUsername() {
+            let username = document.getElementById('username').value;
+            let usernameError = document.getElementById('username-error');
+            let regex = /^[a-zA-Z]+$/; // Only letters allowed
+
+            if (!regex.test(username) && username.length > 0) {
+                usernameError.textContent = "Имя пользователя должно содержать только буквы.";
+                return false;
+            } else {
+                usernameError.textContent = "";
+                return true;
+            }
+        }
+
+        function validatePassword() {
+            let password = document.getElementById('password').value;
+            let passwordError = document.getElementById('password-error');
+            let regex = /^[0-9]+$/; // Only numbers allowed
+
+            if (!regex.test(password) && password.length > 0) {
+                passwordError.textContent = "Пароль должен содержать только цифры.";
+                return false;
+            } else {
+                passwordError.textContent = "";
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>

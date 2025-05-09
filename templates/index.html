@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="static/style.css">
+<title>Вложенные прямоугольники</title>
+<style>
+  body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
+}
+
+/* Стили для верхней навигационной панели */
+.top-nav {
+  background-color: #3498db; /* Цвет фона навигационной панели */
+  padding: 10px 20px; /* Отступы внутри панели */
+  position: fixed; /* Фиксированное положение */
+  width: 100%; /* Ширина на всю страницу */
+  top: 0; /* Прикрепить к верхней части страницы */
+  z-index: 1000; /* Убедиться, что панель выше других элементов */
+}
+
+.top-nav nav ul {
+  list-style: none; /* Убираем маркеры списка */
+  padding: 0; /* Убираем отступы */
+  margin: 0; /* Убираем внешние отступы */
+  display: flex; /* Используем flexbox для горизонтального расположения */
+}
+
+.top-nav nav ul li {
+  margin-right: 20px; /* Отступ между элементами списка */
+}
+
+.top-nav nav ul li a {
+  color: white; /* Цвет текста ссылок */
+  text-decoration: none; /* Убираем подчеркивание */
+  font-weight: bold; /* Жирный шрифт */
+}
+
+.outer-rectangle {
+  width: 1920px;
+  height: 800px;
+  background-color: #3498db;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px; /* Отступ сверху, чтобы не перекрывать навигационную панель */
+}
+
+.inner-rectangle {
+  width: 1300px;
+  height: 700px;
+  background-color: #2980b9;
+  border-radius: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column; /* Размещаем кнопки вертикально */
+  justify-content: center; /* Выравниваем по вертикали */
+  align-items: center; /* Выравниваем по горизонтали */
+}
+
+button {
+  padding: 12px 90px;
+  background-color: #f39c12;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 3px 7px rgba(0,0,0,0.15);
+  transition: background-color 0.3s ease;
+  /* Убираем отступ сверху, так как используем flexbox */
+  margin-bottom: 20px; /* Добавляем отступ между кнопками */
+}
+
+button:hover {
+  background-color: #d78c0a;
+}
+
+/* Стили для ссылок внутри кнопок */
+button a {
+  color: white; /* Белый цвет текста */
+  text-decoration: none; /* Убираем подчеркивание */
+  display: block; /* Занимаем всю площадь кнопки */
+  width: 100%;
+  height: 100%;
+  line-height: 1.2; /* Центрируем текст по вертикали */
+  text-align: center; /* Центрируем текст по горизонтали */
+}
+</style>
+</head>
+<body>
+  <!-- Верхняя навигационная панель -->
+  <div class="top-nav">
+    <nav>
+      <ul>
+        <li><a href="">Главная</a></li>
+        <li><a href="Информация">Информация</a></li>
+        <li><a href="Профиль">Профиль</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="outer-rectangle">
+    <div class="inner-rectangle">
+      <button><a href="/createZapis">Добавить новую запись</a></button>
+      <button><a href="/oldZapis">Посмотреть старые записи</a></button>
+    </div>
+  </div>
+</body>
+</html>

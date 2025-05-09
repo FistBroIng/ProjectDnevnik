@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
+}
+
+/* Стили для верхней навигационной панели */
+.top-nav {
+  background-color: #3498db; /* Цвет фона навигационной панели */
+  padding: 10px 20px; /* Отступы внутри панели */
+  position: fixed; /* Фиксированное положение */
+  width: 100%; /* Ширина на всю страницу */
+  top: 0; /* Прикрепить к верхней части страницы */
+  z-index: 1000; /* Убедиться, что панель выше других элементов */
+}
+
+.top-nav nav ul {
+  list-style: none; /* Убираем маркеры списка */
+  padding: 0; /* Убираем отступы */
+  margin: 0; /* Убираем внешние отступы */
+  display: flex; /* Используем flexbox для горизонтального расположения */
+}
+
+.top-nav nav ul li {
+  margin-right: 20px; /* Отступ между элементами списка */
+}
+
+.top-nav nav ul li a {
+  color: white; /* Цвет текста ссылок */
+  text-decoration: none; /* Убираем подчеркивание */
+  font-weight: bold; /* Жирный шрифт */
+}
+
+.outer-rectangle {
+  width: 1920px;
+  height: 800px;
+  background-color: #3498db;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px; /* Отступ сверху, чтобы не перекрывать навигационную панель */
+}
+
+.inner-rectangle {
+  width: 1300px;
+  height: 700px;
+  background-color: #2980b9;
+  border-radius: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  padding: 12px 90px;
+  background-color: #f39c12;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 3px 7px rgba(0,0,0,0.15);
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d78c0a;
+}
