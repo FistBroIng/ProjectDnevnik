@@ -1,10 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Запись дня</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+  .container {
+    background: white;
+    padding: 50px 60px;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    max-width: 700px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  h1 {
+    text-align: center;
+    color: #2a7ae2;
+    margin-bottom: 40px;
+    font-size: 2.8rem;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 12px;
+    font-size: 1.4rem;
+  }
+  input[type="text"] {
+    width: 100%;
+    height: 60px; /* Увеличенная высота */
+    padding: 16px 20px;
+    font-size: 1.2rem;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    margin-bottom: 35px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    background-color: #f9f9f9; /* Slightly different background for visual cue */
+    color: #555; /* Slightly darker text color */
+  }
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #2a7ae2;
+  }
+  textarea {
+    width: 100%;
+    min-height: 350px; /* Увеличенная высота */
+    padding: 16px 20px;
+    font-size: 1.2rem;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    margin-bottom: 35px;
+    box-sizing: border-box;
+    resize: vertical;
+    overflow-y: auto;
+    font-family: inherit;
+    background-color: #f9f9f9; /* Slightly different background for visual cue */
+    color: #555; /* Slightly darker text color */
+  }
+  textarea:focus {
+    outline: none;
+    border-color: #2a7ae2;
+  }
+  button {
+    background-color: #2a7ae2;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 15px; /* Отступ между кнопками */
+  }
+  button:hover,
+  button:focus {
+    background-color: #1d5bbf;
+  }
+  @media (max-width: 768px) {
+    body {
+      padding: 20px;
+    }
+    .container {
+      padding: 40px 30px;
+      max-width: 100%;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+    }
+    label {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    input[type="text"],
+    textarea {
+      font-size: 1rem;
+      padding: 12px 15px;
+      margin-bottom: 25px;
+    }
+    button {
+      font-size: 1.2rem;
+      padding: 15px;
+    }
+  }
+</style>
 </head>
 <body>
-$END$
+  <div class="container" role="main" aria-label="Форма записи онлайн дневника">
+    <h1>Запись дня</h1>
+
+      <label for="intro">Интро дня (самое важное)</label>
+      <input type="text" id="intro" name="intro" value="{{ day.intro }}" readonly />
+      <label for="description">Описание дня</label>
+      <textarea id="description" name="description" readonly>{{ day.text }}</textarea>
+      <button type="button" onclick="window.location.href='/oldZapis'">На страницу с заметками</button>
+      <button type="button" onclick="window.location.href='/zapisDel/{{ day.id }}'">Удалить запись</button>
+      <button type="button" onclick="window.location.href='/zapisRedect/{{ day.id }}'">Редактировать запись</button><!-- Кнопка -->
+      </div>
+  </div>
 </body>
 </html>

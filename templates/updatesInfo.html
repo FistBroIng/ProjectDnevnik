@@ -1,10 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Изменения данных профиля</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .registration-form {
+            background: rgb(240, 240, 240);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        .registration-form h2 {
+            text-align: center;
+        }
+        .registration-form input,
+        .registration-form textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .registration-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #26b8a4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px; /* Добавил */
+        }
+        .registration-form button:hover {
+            background-color: #218838;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.8em;
+            margin-top: -5px;
+            margin-bottom: 10px;
+        }
+        /* Для textarea чтобы было красивее */
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+    </style>
 </head>
-<body>
-$END$
+<body background="phon.jpg">
+
+    <div class="registration-form">
+        <h2>Изменения данных профиля</h2>
+        <form action="#" method="post" onsubmit="return validateForm()">
+            <!-- Имя пользователя -->
+            <input type="text" id="username" name="username" placeholder="Имя пользователя" required oninput="validateUsername()">
+            <div id="username-error" class="error-message"></div>
+
+            <!-- Краткая информация о себе -->
+            <textarea id="bio" name="bio" placeholder="Краткая информация о себе (макс 600 символов)" maxlength="600" oninput="validateBio()"></textarea>
+            <div id="bio-error" class="error-message"></div>
+
+            <!-- Email -->
+            <input type="email" id="email" name="email" placeholder="Email" required oninput="validateEmail()">
+            <div id="email-error" class="error-message"></div>
+
+            <!-- Проверка -->
+            <button type="submit">Сохранить</button>
+        </form>
+    </div>
+
+    <script>
+        function validateUsername() {
+            const usernameInput = document.getElementById('username');
+            const usernameError = document.getElementById('username-error');
+            const usernameValue = usernameInput.value;
+
+            if (/\d/.test(usernameValue)) {
+                usernameError.textContent = "Имя пользователя не должно содержать цифры.";
+                return false;
+            } else {
+                usernameError.textContent = "";
+                return true;
+            }
+        }
+
+        function validateBio() {
+            const bioInput = document.getElementById('bio');
+            const bioError = document.getElementById('bio-error');
+            const bioValue = bioInput.value;
+
+            if (bioValue.length > 600) {
+                bioError.textContent = "Максимум 600 символов.";
+                return false;
+            } else {
+                bioError.textContent = "";
+                return true;
+            }
+        }
+
+        function validateEmail() {
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('email-error');
+            const emailValue = emailInput.value;
+
+            // Используем простую проверку регулярным выражением
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(emailValue)) {
+                emailError.textContent = "Некорректный формат email.";
+                return false;
+            } else {
+                emailError.textContent = "";
+                return true;
+            }
+        }
+
+        function validateForm() {
+            const isUsernameValid = validateUsername();
+            const isBioValid = validateBio();
+            const isEmailValid = validateEmail();
+
+            return isUsernameValid && isBioValid && isEmailValid;
+        }
+    </script>
+
 </body>
 </html>

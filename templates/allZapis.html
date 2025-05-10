@@ -1,10 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Все записи дней</title>
+  <!-- Подключение Bootstrap для стилей -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Можно добавить свои стили -->
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Arial', sans-serif;
+    }
+    h1 {
+      margin-bottom: 30px;
+      text-align: center;
+      color: #343a40;
+    }
+    .card {
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    .card-header {
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .card-body {
+      padding: 20px;
+    }
+    .btn-warning {
+      transition: background-color 0.3s;
+    }
+    .btn-warning:hover {
+      background-color: #e0a800;
+      border-color: #d39e00;
+    }
+  </style>
 </head>
 <body>
-$END$
+<div class="container mt-5">
+  <h1>Все записи дней на сайте</h1>
+
+  {% for el in day_user %}
+  <div class="card">
+    <div class="card-header">
+      {{ el.intro }}
+    </div>
+    <div class="card-body text-center">
+      <a href="/infoZapis/{{ el.id }}" class="btn btn-warning btn-lg">Детальнее</a>
+    </div>
+  </div>
+  {% endfor %}
+
+  <!-- Кнопка "Назад" внизу -->
+  <div class="text-center mt-4">
+    <a href="/oldZapis" class="btn btn-secondary btn-lg">Назад</a>
+  </div>
+
+</div>
 </body>
 </html>

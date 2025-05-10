@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Редактирование записи дня</title>
+<title>Запись дня</title>
 <style>
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -119,17 +119,22 @@
 </head>
 <body>
   <div class="container" role="main" aria-label="Форма записи онлайн дневника">
-    <h1>Редактирование дня.</h1>
-    <form action="" method="post">  <!-- Убрал action="#" -->
+    <h1>Запись дня</h1>
+    <form action="#" method="post">
       <label for="intro">Интро дня (самое важное)</label>
-      <input type="text" id="intro" name="intro" value="{{ dayRedect.intro }}" required maxlength="100" />
+      <input type="text" id="intro" name="intro" placeholder="В чем суть вашего дня?" required maxlength="100" />
 
       <label for="description">Описание дня</label>
-      <textarea id="description" name="text" required>{{ dayRedect.text }}</textarea>
+      <textarea id="description" name="description" placeholder="Расскажите, как прошел ваш день..." required></textarea>
 
       <button type="submit">Сохранить запись</button>
-      <button type="button" onclick="window.location.href='{{ url_for('allZapis') }}'">На страницу с заметками</button> <!-- Кнопка -->
+      <button type="button" onclick="window.location.href='/'">На главную</button> <!-- Кнопка
+
+
+
+      </div>
     </form>
   </div>
 </body>
 </html>
+

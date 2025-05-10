@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Профиль пользователя (в стиле VK)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Общие стили */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #e1e8ed; /* Светло-серый фон, как в VK */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      color: #222; /* Темный цвет текста */
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Контейнер профиля */
+    .profile-container {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Мягкая тень */
+      padding: 20px;
+      width: 95%;
+      max-width: 700px;
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Верхняя часть профиля (аватар, имя) */
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    /* Изображение профиля */
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 3px solid #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Имя пользователя */
+    .profile-name {
+      font-size: 1.5em;
+      font-weight: 500;
+    }
+
+    /* Блок информации о пользователе и кнопки */
+    .profile-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+      padding: 10px 0;
+      flex-wrap: wrap;
+    }
+
+    /* Контейнер для кнопок */
+    .buttons-container {
+      display: flex;
+      flex-direction: column; /* вертикальное расположение */
+      gap: 10px; /* промежутки между кнопками */
+    }
+
+    /* Кнопки */
+    .edit-button {
+      background-color: #4a76a8; /* синий VK */
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: background-color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .edit-button i {
+      margin-right: 8px;
+    }
+
+    .edit-button:hover {
+      background-color: #3a6089;
+    }
+
+    /* Разделитель */
+    .separator {
+      width: 100%;
+      height: 1px;
+      background-color: #e0e0e0;
+      margin: 15px 0;
+    }
+
+    /* Детали профиля */
+    .profile-details {
+      text-align: left;
+      width: 100%;
+      padding: 0 10px;
+    }
+
+    .profile-details p {
+      font-size: 0.9em;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    .profile-details strong {
+      font-weight: 700;
+      color: #333;
+      margin-right: 5px;
+    }
+
+    /* Форма загрузки аватара */
+    .upload-form {
+      margin-top: 15px;
+      width: 100%;
+    }
+
+    .upload-form input[type="file"] {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    /* Сообщения */
+    .error {
+      color: #e74c3c;
+      margin-top: 10px;
+      font-size: 0.8em;
+    }
+
+    .success {
+      color: #27ae60;
+      margin-top: 10px;
+      font-size: 0.8em;
+    }
+
+    /* Секция с описанием пользователя (улучшенная) */
+    .profile-bio-section {
+      background-color: #f0f2f5; /* светлый фон для выделения */
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-top: 20px;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .section-title i {
+      margin-right: 8px;
+      color: #4a76a8;
+    }
+
+    .profile-bio {
+      font-size: 1em;
+      line-height: 1.5;
+      color: #555;
+      margin-bottom: 15px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+      min-height: 80px;
+    }
+
+    .update-bio-button {
+      display: inline-block;
+      background-color: #4a76a8;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 0.95em;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .update-bio-button i {
+      margin-right: 6px;
+    }
+
+    .update-bio-button:hover {
+      background-color: #3a6089;
+    }
+
+    /* Адаптивность */
+    @media(max-width: 600px) {
+      .profile-container {
+        padding: 15px;
+      }
+      .section-title {
+        font-size: 1em;
+      }
+      .profile-bio {
+        font-size: 0.95em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <!-- Верхняя часть профиля -->
+    <div class="profile-header">
+       {% if user.avatar %}
+        <img src="{{ url_for('static', filename='uploads/profile_images/' + user.avatar) }}" class="profile-image" alt="Фото профиля" />
+      {% else %}
+        <img src="{{ url_for('static', filename='images/default_avatar.png') }}" class="profile-image" alt="Фото профиля" />
+      {% endif %}
+      <h1 class="profile-name">{{ user.username }}</h1>
+    </div>
+
+    <!-- Информация о пользователе и кнопки -->
+    <div class="profile-info">
+      <p class="profile-bio">Краткое описание пользователя. Добавьте интересные детали о себе! {{ user.bio or 'Нет био' }}</p>
+
+      <div class="buttons-container">
+        <a href="{{ url_for('logout') }}" class="edit-button"><i class="fas fa-sign-out-alt"></i> Выйти</a>
+        <a href="{{ url_for('updatesInfo') }}" class="edit-button"><i class="fas fa-edit"></i> Добавить краткое описание</a>
+      </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- Детали профиля -->
+    <div class="profile-details">
+      <p><strong>Email:</strong> {{ user.email or 'Не указан' }}</p>
+      <div>
+        <a href="{{ url_for('updatesInfo') }}" class="edit-button"><i class="fas fa-edit"></i> Изменить емаил</a>
+      </div>
+      <p><strong>Имя:</strong> {{ user.username }}</p>
+      <div>
+        <a href="{{ url_for('updatesInfo') }}" class="edit-button"><i class="fas fa-edit"></i> Изменить имя</a>
+      </div>
+    </div>
+
+    <!-- Секция с улучшенной описанием пользователя -->
+    <div class="profile-bio-section">
+      <div class="section-title"><i class="fas fa-user-edit"></i> Описание пользователя</div>
+      <p class="profile-bio">
+        {{ user.bio or 'Нет био' }}
+      </p>
+      <a href="{{ url_for('updatesInfo') }}" class="update-bio-button"><i class="fas fa-pencil-alt"></i> Редактировать описание</a>
+    </div>
+
+    <!-- Форма загрузки аватара -->
+    <form method="POST" enctype="multipart/form-data" class="upload-form">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <p class="{{ category }}">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <input type="file" name="file" accept="image/*" required />
+      <button type="submit" class="edit-button"><i class="fas fa-upload"></i> Загрузить аватар</button>
+    </form>
+  </div>
+</body>
+</html>
